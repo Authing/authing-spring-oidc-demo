@@ -6,17 +6,15 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.3.3.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>authing-spring-oidc-demo</artifactId>
 	<version>4.0.1</version>
 
 	<properties>
-<!--		<java.version>11</java.version>-->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
-		<!-- 解决eclipse项目中pom文件报错unknown error问题 -->
+		<!-- for Eclipse -->
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
 	</properties>
 
