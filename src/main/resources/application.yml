@@ -1,6 +1,4 @@
 spring:
-  thymeleaf:
-    cache: false
   security:
     oauth2:
       client:
@@ -17,6 +15,4 @@ spring:
           authing:
             issuer-uri: https://{替换为您的Issuer，如：authing-net-sdk-demo}.authing.cn/oauth/oidc
             user-name-attribute: preferred_username
-#            user-name-attribute: name
-#            user-name-attribute: username
 
