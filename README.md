@@ -53,15 +53,13 @@ Spring Security 的主要功能主要包括：
 
 ```yaml
 spring:
-  thymeleaf:
-    cache: false
   security:
     oauth2:
       client:
         registration:
           authing:
-            client-id: {clientId}
-            client-secret: {secret}
+            client-id: {替换为您的App ID如：App Secret5e72d72e3798fb03e1d57b13}
+            client-secret: {替换为您的App Secret如：931f19ce2161e5560c072f586c706ee6}
             redirect-uri: '{baseUrl}/login/oauth2/code/{registrationId}'
             client-authentication-method: post
             scope:
@@ -69,7 +67,7 @@ spring:
               - profile
         provider:
           authing:
-            issuer-uri: {issuerUrl}
+            issuer-uri: https://{替换为您的Issuer，如：authing-net-sdk-demo}.authing.cn/oauth/oidc
             user-name-attribute: preferred_username
 ```
 
