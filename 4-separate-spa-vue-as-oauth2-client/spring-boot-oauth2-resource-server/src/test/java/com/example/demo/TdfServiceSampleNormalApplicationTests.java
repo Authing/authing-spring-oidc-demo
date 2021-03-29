@@ -1,4 +1,4 @@
-package com.example.sample.normal;
+package com.example.demo;
 
 import org.junit.Assert;
 import org.junit.Test;

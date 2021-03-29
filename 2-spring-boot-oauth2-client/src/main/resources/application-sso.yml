@@ -11,10 +11,9 @@ spring:
     oauth2:
       client:
         registration:
-          tdf:
-            client-id: 6061a1399153fa35510b4249
-            client-secret: db1054f99722c795d80599e3c3a322de
-
+          authing:
+            client-id: 6061e247f16c6c39fcc4b35d
+            client-secret: 505049220ea0ed908924bec8e0d2a6d1
 
 
 

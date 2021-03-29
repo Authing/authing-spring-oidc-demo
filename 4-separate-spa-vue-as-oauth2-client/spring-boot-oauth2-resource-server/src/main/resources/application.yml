@@ -6,9 +6,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: ${authorization-cloud-server-url}/.well-known/jwks.json
-
-authorization-cloud-server-url: http://192.168.99.77:9998
+          jwk-set-uri: https://zztest1.authing.cn/oidc/.well-known/jwks.json
 
 logging:
   level:

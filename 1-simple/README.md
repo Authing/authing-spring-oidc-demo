@@ -13,21 +13,21 @@ Spring Security 的主要功能主要包括：
 ## 1.  初始化 Spring boot 项目
 打开 IDEA，点击 New Project 创建一个新项目，选择 Spring Initializr 创建一个 Spring Boot 项目。
 
-![](./docs/img/1.png)
+![](../docs/img/1.png)
 
 输入项目的 Group 以及 Artifact 信息。
 
-![](./docs/img/2.png)
+![](../docs/img/2.png)
 
 添加 Spring Web,  Spring Security 依赖。
 
-![](./docs/img/3.png)
+![](../docs/img/3.png)
 
 创建好项目后，在 IDEA 中运行项目。
 
 在项目运行后，使用浏览器访问 [localhost:8080](http://localhost:8080) 会自动跳转到 /login，可以看到页面上出现了一个基础的登录表单，说明项目初始化成功。
 
-![](./docs/img/4.png)
+![](../docs/img/4.png)
 
 ## 2.  配置 Authing
 
@@ -35,17 +35,17 @@ Spring Security 的主要功能主要包括：
 
 点击左侧的「应用」 菜单项，在右侧会看到一个默认创建好的应用。
 
-![](./docs/img/5.png)
+![](../docs/img/5.png)
 
 点击「配置」，看到 App ID、App Secret 和 Issuer url，请妥善保存，之后会用到这些信息。
 
-![](./docs/img/6.png)
+![](../docs/img/6.png)
 
 然后需要在回调地址处添加 [http://localhost:8080/login/oauth2/code/authing](http://localhost:8080/login/oauth2/code/authing) 之后的选项与下图中保持一致。
 
-![](./docs/img/7.png)
+![](../docs/img/7.png)
 
-![](./docs/img/8.png)
+![](../docs/img/8.png)
 
 ## 3. 配置 Spring Security
 
@@ -91,9 +91,9 @@ spring:
 
 一切准备就绪了，现在启动项目并访问 [localhost:8080](http://localhost:8080)，即可看到 Authing 登录窗口。
 
-![](./docs/img/9.png)
+![](../docs/img/9.png)
 
 Spring Security 默认会保护首页，在访问首页时会进行认证，未认证的访问请求会跳转到 /login。
 注册并登录后，会跳转回首页，此时可以看到页面上的欢迎语显示了当前登录用户的用户名。
 
-![](./docs/img/10.png)
+![](../docs/img/10.png)
