@@ -1,0 +1,35 @@
+server:
+  port: 8082
+  servlet:
+    session:
+      cookie:
+        name: UISESSIONCOUPON
+
+spring:
+  thymeleaf:
+    cache: false
+  security:
+    oauth2:
+      client:
+        registration:
+          tdf:
+            client-id: tdfOauth2SSO213
+            client-secret: 123456
+            provider: tdf
+            client-name: authing统一认证
+            authorization-grant-type: client_credentials
+            client-authentication-method: basic
+        provider:
+          tdf:
+            token-uri: http://192.168.99.77:9998/oauth/token
+            user-info-uri: http://192.168.99.77:9998/me
+            user-name-attribute: "name"
+            jwk-set-uri: http://192.168.99.77:9998/.well-known/jwks.json
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.security: DEBUG
+    org.springframework.security.oauth2: DEBUG
+    import org.springframework.cloud.netflix.zuul: DEBUG

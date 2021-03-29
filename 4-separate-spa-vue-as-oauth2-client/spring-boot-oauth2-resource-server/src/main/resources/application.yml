@@ -1,0 +1,18 @@
+server:
+  port: 8050
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: ${authorization-cloud-server-url}/.well-known/jwks.json
+
+authorization-cloud-server-url: http://192.168.99.77:9998
+
+logging:
+  level:
+    org.springframework.web: Debug
+    org.springframework.security: DEBUG
+    org.springframework.security.oauth2: DEBUG
+    org.springframework.boot.autoconfigure: INFO

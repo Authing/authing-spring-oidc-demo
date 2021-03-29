@@ -1,0 +1,22 @@
+spring:
+  thymeleaf:
+    cache: false
+  security:
+    oauth2:
+      client:
+        registration:
+          authing:
+            client-id: 5f8d2861599d91045743fad3
+            client-secret: 439d9e49cc78c318419d72996d81bc61
+            redirect-uri: '{baseUrl}/login/oauth2/code/{registrationId}'
+            client-authentication-method: post
+            scope:
+              - openid
+              - profile
+        provider:
+          authing:
+#            issuer-uri: https://zztest1.authing.cn/oauth/oidc
+            issuer-uri: https://zztest1.authing.cn/oidc
+            user-name-attribute: preferred_username
+#            user-name-attribute: name
+#            user-name-attribute: username

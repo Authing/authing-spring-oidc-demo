@@ -1,0 +1,62 @@
+server:
+  port: 8082
+  servlet:
+    session:
+      cookie:
+        name: UISESSIONCOUPON
+
+spring:
+  thymeleaf:
+    cache: false
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: b7fb29a538bb19b09365
+            client-secret: 2fbfd22e69e61d873bad55143538770748a76d3a
+          authing:
+            client-id: 5f9d0cef2e10f4e465153a7b
+            client-secret: 2b8332093c4b219d0d91f278a46731e4
+          tdf:
+            client-id: tdfOauth2SSO213
+            client-secret: 123456
+            provider: tdf
+            client-name: authing统一认证
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://localhost:8082/login/oauth2/code/tdf"
+#            redirect-uri-template: "{baseUrl}/login/oauth2/code/{registrationId}"
+#            client-authentication-method: basic
+        provider:
+          authing:
+            client-id: 5f9d0cef2e10f4e465153a7b
+            client-secret: 2b8332093c4b219d0d91f278a46731e4
+          tdf:
+            authorization-uri: https://oauth2.taiji.com.cn/oauth/authorize
+            token-uri: https://oauth2.taiji.com.cn/oauth/token
+            user-info-uri: https://oauth2.taiji.com.cn/me
+            user-name-attribute: "name"
+            jwk-set-uri: https://oauth2.taiji.com.cn/.well-known/jwks.json
+#          tdf:
+#            authorization-uri: http://localhost:9999/oauth/authorize
+#            token-uri: http://localhost:9999/oauth/token
+#            user-info-uri: http://localhost:9999/me
+#            user-name-attribute: "name"
+#            jwk-set-uri: http://localhost:9999/.well-known/jwks.json
+
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.security: DEBUG
+    org.springframework.security.oauth2: DEBUG
+    import org.springframework.cloud.netflix.zuul: DEBUG
+
+#
+#---
+#server:
+#  ssl:
+#    key-store-type: PKCS12
+#    key-store-password: 123456
+#    key-store: classpath:star.taiji.com.cn.pfx
