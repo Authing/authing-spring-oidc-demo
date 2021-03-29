@@ -14,6 +14,7 @@ spring:
       client:
         registration:
           authing:
+            client-name: authing
             client-id: {替换为您的App ID如：App Secret5e72d72e3798fb03e1d57b13}
             client-secret: {替换为您的App Secret如：931f19ce2161e5560c072f586c706ee6}
             redirect-uri: '{baseUrl}/login/oauth2/code/{registrationId}'

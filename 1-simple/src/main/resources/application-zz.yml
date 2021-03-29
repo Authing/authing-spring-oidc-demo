@@ -17,6 +17,6 @@ spring:
           authing:
 #            issuer-uri: https://zztest1.authing.cn/oauth/oidc
             issuer-uri: https://zztest1.authing.cn/oidc
-            user-name-attribute: preferred_username
+            user-name-attribute: name
 #            user-name-attribute: name
 #            user-name-attribute: username

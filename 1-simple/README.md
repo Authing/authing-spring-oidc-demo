@@ -11,27 +11,41 @@ Spring Security 的主要功能主要包括：
 下面将详细介绍使用 Spring Security5 集成 Authing 登录的方法：
 
 ## 1.  初始化 Spring boot 项目
-在浏览器中打开 [start.spring.io](https://start.spring.io)，输入项目基本信息，并添加 Web, Reactive Web, Security, 和 Thymeleaf 依赖。
+打开 IDEA，点击 New Project 创建一个新项目，选择 Spring Initializr 创建一个 Spring Boot 项目。
 
 ![](./docs/img/1.png)
 
-下载创建好的项目，在 IDEA 中打开并等待依赖安装完成，然后运行 `./mvnw spring-boot:run`，在项目运行后，使用浏览器访问 [localhost:8080](http://localhost:8080) 会自动跳转到 `/login`，可以看到页面上出现了一个基础的登录表单，说明项目初始化成功。
-
-## 2.  配置 Authing
-
-首先要在 Authing 注册一个账号，然后进入控制台，点击左侧的 应用 菜单项，在右侧会看到一个默认创建好的应用。
+输入项目的 Group 以及 Artifact 信息。
 
 ![](./docs/img/2.png)
 
-点击 应用配置，上方可以看到 App ID、App Secret 和 Issuer url，请妥善保存，之后会用到这些信息。
-
-然后需要在回调地址处添加 http://localhost:8080/login/oauth2/code/authing，之后的选项与下图中保持一致。
+添加 Spring Web,  Spring Security 依赖。
 
 ![](./docs/img/3.png)
 
-点击表单下面的 高级选项，在新出现的表单中找到并点击 随机生成签名密钥 按钮，然后点击最下面的 确定 来保存所有改动。
+创建好项目后，在 IDEA 中运行项目。
+
+在项目运行后，使用浏览器访问 [localhost:8080](http://localhost:8080) 会自动跳转到 /login，可以看到页面上出现了一个基础的登录表单，说明项目初始化成功。
 
 ![](./docs/img/4.png)
+
+## 2.  配置 Authing
+
+首先要在 Authing 注册一个账号，然后进入控制台，按照引导步骤新建一个用户池。
+
+点击左侧的「应用」 菜单项，在右侧会看到一个默认创建好的应用。
+
+![](./docs/img/5.png)
+
+点击「配置」，看到 App ID、App Secret 和 Issuer url，请妥善保存，之后会用到这些信息。
+
+![](./docs/img/6.png)
+
+然后需要在回调地址处添加 [http://localhost:8080/login/oauth2/code/authing](http://localhost:8080/login/oauth2/code/authing) 之后的选项与下图中保持一致。
+
+![](./docs/img/7.png)
+
+![](./docs/img/8.png)
 
 ## 3. 配置 Spring Security
 
@@ -39,15 +53,13 @@ Spring Security 的主要功能主要包括：
 
 ```yaml
 spring:
-  thymeleaf:
-    cache: false
   security:
     oauth2:
       client:
         registration:
           authing:
-            client-id: {clientId}
-            client-secret: {secret}
+            client-id: {替换为您的App ID如：App Secret5e72d72e3798fb03e1d57b13}
+            client-secret: {替换为您的App Secret如：931f19ce2161e5560c072f586c706ee6}
             redirect-uri: '{baseUrl}/login/oauth2/code/{registrationId}'
             client-authentication-method: post
             scope:
@@ -55,8 +67,8 @@ spring:
               - profile
         provider:
           authing:
-            issuer-uri: {issuerUrl}
-            user-name-attribute: username
+            issuer-uri: https://{替换为您的Issuer，如：authing-net-sdk-demo}.authing.cn/oauth/oidc
+            user-name-attribute: preferred_username
 ```
 
 需要将这里的 {clientId}、{secret}、{issuerUrl} 替换成上一步 *应用配置* 中的实际信息。
@@ -75,17 +87,13 @@ spring:
    <groupId>org.springframework.security</groupId>
    <artifactId>spring-security-oauth2-jose</artifactId>
 </dependency>
-<dependency>
-   <groupId>org.thymeleaf.extras</groupId>
-   <artifactId>thymeleaf-extras-springsecurity5</artifactId>
-</dependency>
 ```
 
 一切准备就绪了，现在启动项目并访问 [localhost:8080](http://localhost:8080)，即可看到 Authing 登录窗口。
 
-![](./docs/img/5.png)
+![](./docs/img/9.png)
 
 Spring Security 默认会保护首页，在访问首页时会进行认证，未认证的访问请求会跳转到 /login。
 注册并登录后，会跳转回首页，此时可以看到页面上的欢迎语显示了当前登录用户的用户名。
 
-![](./docs/img/6.png)
+![](./docs/img/10.png)

@@ -12,8 +12,8 @@ spring:
       client:
         registration:
           tdf:
-            client-id: tdfOauth2SSO214
-            client-secret: 123456
+            client-id: 6061a1399153fa35510b4249
+            client-secret: db1054f99722c795d80599e3c3a322de
 
 
 
