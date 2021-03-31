@@ -14,10 +14,14 @@ JDK1.8+
  1. 浏览器 http://localhost:8082/coupon/list 登录后展示内容
  2. 浏览器输入 http://localhost:8081/coupon/list 此时不用再输入用户名密码
 
-### 其他脚本
+### cur测试脚本
 
 ```
 # 使用Client Credentials模式获取token
-curl -H "Accept: application/json" tdfOauth2SSO213:123456@192.168.99.77:9998/oauth/token -d grant_type=client_credentials
-
+curl --location --request POST 'https://zztest1.authing.cn/oidc/token' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'grant_type=client_credentials' \
+--data-urlencode 'client_id=6061e247f16c6c39fcc4b35d' \
+--data-urlencode 'client_secret=505049220ea0ed908924bec8e0d2a6d1' \
+--data-urlencode 'scope=openid,profile'
 ```

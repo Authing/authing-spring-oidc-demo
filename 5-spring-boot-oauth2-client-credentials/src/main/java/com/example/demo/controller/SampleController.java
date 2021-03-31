@@ -1,4 +1,4 @@
-package com.example.oauth2.client.controller;
+package com.example.demo.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

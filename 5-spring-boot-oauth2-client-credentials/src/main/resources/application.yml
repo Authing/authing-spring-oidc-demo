@@ -12,19 +12,19 @@ spring:
     oauth2:
       client:
         registration:
-          tdf:
-            client-id: tdfOauth2SSO213
-            client-secret: 123456
-            provider: tdf
-            client-name: authing统一认证
+          authing:
+            client-name: authing
+#            client-id: 5f8d2861599d91045743fad3
+#            client-secret: 439d9e49cc78c318419d72996d81bc61
+            client-id: 6061e247f16c6c39fcc4b35d
+            client-secret: 505049220ea0ed908924bec8e0d2a6d1
             authorization-grant-type: client_credentials
-            client-authentication-method: basic
+            scope:
+              - openid
+              - profile
         provider:
-          tdf:
-            token-uri: http://192.168.99.77:9998/oauth/token
-            user-info-uri: http://192.168.99.77:9998/me
-            user-name-attribute: "name"
-            jwk-set-uri: http://192.168.99.77:9998/.well-known/jwks.json
+          authing:
+            token-uri: https://zztest1.authing.cn/oidc/token
 
 logging:
   level:
