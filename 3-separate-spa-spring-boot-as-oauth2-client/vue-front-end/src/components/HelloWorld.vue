@@ -83,6 +83,7 @@
             handleLogout() {
                 axios.get(`${process.env.VUE_APP_logoutUri}`, {withCredentials:true})
                     .then((data ) => {
+                        window.location.href = "https://zztest1.authing.cn/login/profile/logout?redirect_uri=http://localhost:9527";
                         alert("退出成功:"+data)
                 })
             }
