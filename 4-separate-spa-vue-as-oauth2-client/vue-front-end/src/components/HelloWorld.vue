@@ -63,7 +63,6 @@
         // },
         methods: {
             handleLogin() {
-                debugger
                 login()
             },
             getToken() {

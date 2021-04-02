@@ -7,6 +7,12 @@
     <version>4.0.2</version>
     <packaging>pom</packaging>
 
+    <parent>
+        <groupId>com.example</groupId>
+        <artifactId>authing-spring-oidc-demo</artifactId>
+        <version>4.0.2</version>
+    </parent>
+
     <modules>
         <module>spring-boot-spa-oauth2-client</module>
     </modules>

@@ -25,7 +25,7 @@
         <module>1-simple</module>
         <module>2-spring-boot-oauth2-client</module>
         <module>3-separate-spa-spring-boot-as-oauth2-client</module>
-<!--        <module>4-separate-spa-vue-as-oauth2-client</module>-->
+        <module>4-separate-spa-vue-as-oauth2-client</module>
 <!--        <module>5-spring-boot-oauth2-client-credentials</module>-->
     </modules>
 

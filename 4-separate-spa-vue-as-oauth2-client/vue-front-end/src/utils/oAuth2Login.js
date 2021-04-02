@@ -26,7 +26,7 @@ export function login() {
         client_id: process.env.VUE_APP_clientId,
         response_type: process.env.VUE_APP_responseType,
         scope: process.env.VUE_APP_scope,
-        state: process.env.VUE_APP_state,
+        state: 1,
         redirect_uri: process.env.VUE_APP_redirectUri
     })
     window.location.href = `${process.env.VUE_APP_userAuthorizationUri}?${param}`
@@ -41,9 +41,25 @@ export function getToken(code) {
     //有两种方式，使用basic或者form,任选其一,推荐使用basic
 
     //1 使用form
+    const params = new URLSearchParams()
+    params.append('client_id', process.env.VUE_APP_clientId)
+    params.append('client_secret', process.env.VUE_APP_clientSecret)
+    params.append('code', code)
+    params.append('grant_type', process.env.VUE_APP_grantType)
+    params.append('redirect_uri', process.env.VUE_APP_redirectUri)
+
+    debugger
+    // redirect_uri不放在qs中序列化，转码导致请求400，所以放在下面拼接
+    return axios.post(`${process.env.VUE_APP_accessTokenUri}`, params, {
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    })
+
+    // 2 使用basic
+    // const oauthKey = Base64.encode(`${process.env.VUE_APP_clientId}:${process.env.VUE_APP_clientSecret}`)
     // const param = qs.stringify({
-    //     client_id: process.env.VUE_APP_clientId,
-    //     client_secret: process.env.VUE_APP_clientSecret,
     //     code,
     //     grant_type: process.env.VUE_APP_grantType,
     //     redirect_uri: process.env.VUE_APP_redirectUri
@@ -51,24 +67,10 @@ export function getToken(code) {
     // // redirect_uri不放在qs中序列化，转码导致请求400，所以放在下面拼接
     // return axios.post(`${process.env.VUE_APP_accessTokenUri}?${param}`, null, {
     //     headers: {
-    //         Accept: 'application/json'
+    //         Accept: 'application/json',
+    //         Authorization: 'Basic ' + oauthKey
     //     }
     // })
-
-    // 2 使用basic
-    const oauthKey = Base64.encode(`${process.env.VUE_APP_clientId}:${process.env.VUE_APP_clientSecret}`)
-    const param = qs.stringify({
-        code,
-        grant_type: process.env.VUE_APP_grantType,
-        redirect_uri: process.env.VUE_APP_redirectUri
-    })
-    // redirect_uri不放在qs中序列化，转码导致请求400，所以放在下面拼接
-    return axios.post(`${process.env.VUE_APP_accessTokenUri}?${param}`, null, {
-        headers: {
-            Accept: 'application/json',
-            Authorization: 'Basic ' + oauthKey
-        }
-    })
 }
 
 /**
@@ -91,19 +93,22 @@ export function getUserInfo(token) {
  * @return {Promise Object}
  */
 export function logout(token, callBack) {
-    // 1. 调用认证中心退出接口
-    return axios.get(`${process.env.VUE_APP_logoutUri}`, {
-        withCredentials: true, //正确写法
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    }).then((data ) => {
-        if (data.data.success) {
-            // 2. 删除access_token
-            removeAccessToken()
-            callBack(data)
-        } else {
-            alert("退出失败："+JSON.stringify(data))
-        }
-    })
+    window.location.href = "https://zztest1.authing.cn/login/profile/logout?redirect_uri=http://localhost:9527";
+    removeAccessToken()
+    alert("退出成功:"+data)
+    // // 1. 调用认证中心退出接口
+    // return axios.get(`${process.env.VUE_APP_logoutUri}`, {
+    //     withCredentials: true, //正确写法
+    //     headers: {
+    //         Authorization: `Bearer ${token}`
+    //     }
+    // }).then((data ) => {
+    //     if (data.data.success) {
+    //         // 2. 删除access_token
+    //         removeAccessToken()
+    //         callBack(data)
+    //     } else {
+    //         alert("退出失败："+JSON.stringify(data))
+    //     }
+    // })
 }

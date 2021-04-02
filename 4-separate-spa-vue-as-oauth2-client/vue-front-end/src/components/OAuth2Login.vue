@@ -20,6 +20,7 @@ export default {
     async ssologin(code) {
       try {
         const tokenRes = await getToken(code)
+        debugger
         console.log(tokenRes)
         const userRes = await getUserInfo(tokenRes.data.access_token)
         console.log(userRes)

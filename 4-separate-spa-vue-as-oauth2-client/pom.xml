@@ -5,6 +5,12 @@
     <artifactId>4-separate-spa-vue-as-oauth2-client</artifactId>
     <packaging>pom</packaging>
 
+    <parent>
+        <groupId>com.example</groupId>
+        <artifactId>authing-spring-oidc-demo</artifactId>
+        <version>4.0.2</version>
+    </parent>
+
     <modules>
         <module>spring-boot-oauth2-resource-server</module>
     </modules>
