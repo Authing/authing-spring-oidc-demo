@@ -28,7 +28,7 @@ spring:
         provider:
           authing:
             issuer-uri: https://zztest1.authing.cn/oidc
-            user-name-attribute: name
+            user-name-attribute: sub
 
 logging:
   level:
